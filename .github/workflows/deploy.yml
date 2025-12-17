@@ -32,19 +32,6 @@ jobs:
           chmod +x terragrunt_linux_amd64
           sudo mv terragrunt_linux_amd64 /usr/local/bin/terragrunt
 
-      # -----------------------
-      # Get the IAM Role/User ARN dynamically
-      # -----------------------
-      - name: Get AWS IAM ARN
-        id: get_arn
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ap-southeast-2
-        run: |
-          ARN=$(aws sts get-caller-identity --query Arn --output text)
-          echo "role_arn=$ARN" >> $GITHUB_OUTPUT
-          echo "Detected IAM ARN: $ARN"
 
       # -----------------------
       # Deploy Infrastructure using Terragrunt
@@ -56,7 +43,7 @@ jobs:
           AWS_DEFAULT_REGION: ap-southeast-2
         run: |
           cd infra
-          terragrunt run-all apply --terragrunt-non-interactive -auto-approve -var "role_arn=${{ steps.get_arn.outputs.role_arn }}"
+          terragrunt run-all apply --terragrunt-non-interactive -auto-approve
 
       # -----------------------
       # Setup Python
