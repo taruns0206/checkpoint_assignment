@@ -3,7 +3,7 @@ import requests
 import boto3
 import os
 
-S3_BUCKET = "product-data-bucket"
+S3_BUCKET = "product-data-bucket-checkpoint-assignment"
 OUTPUT_FILE = "filtered_products.json"
 
 def main():
