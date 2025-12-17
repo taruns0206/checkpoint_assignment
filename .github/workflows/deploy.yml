@@ -26,7 +26,7 @@ jobs:
           AWS_DEFAULT_REGION: ap-southeast-2
         run: |
           cd infra
-          terragrunt run-all apply -auto-approve
+          terragrunt run-all apply --terragrunt-non-interactive -auto-approve
 
       - uses: actions/setup-python@v5
         with:
