@@ -5,3 +5,7 @@ variable "bucket_name" {
 variable "tags" {
   type = map(string)
 }
+
+variable "role_arn" {
+  type = string
+}
