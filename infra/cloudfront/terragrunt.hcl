@@ -1,4 +1,8 @@
 terraform {
+  backend "s3" {}
+}
+
+terraform {
   source = "../../modules/cloudfront"
 }
 
