@@ -1,7 +1,3 @@
-terraform {
-  backend "s3" {}
-}
-
 resource "aws_cloudfront_distribution" "this" {
   enabled = true
 
